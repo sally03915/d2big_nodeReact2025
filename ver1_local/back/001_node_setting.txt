@@ -1,0 +1,116 @@
+
+_________________________________________________
+_________________________________________________
+■1. npm 초기화
+```bash
+cd back
+npm init
+  back
+```
+
+■2.  express 설치
+```bash
+npm install express
+```
+
+node  app.js
+
+
+■3. sequelize , sequelize-cli 설치
+```bash
+npm  i  sequelize   sequelize-cli   mysql2
+```
+
+- sequalize 셋팅
+
+npx sequelize init
+
+npm  i  -D  nodemon@2
+
+■4.  비밀번호 암호화 설치
+```bash
+npm i bcrypt
+```
+
+■ 5. CORS
+```bash
+npm i cors
+```
+
+■ 6. passport
+```bash
+npm i passport  passport-local
+```
+
+■ 7. 세션설치
+```bash
+  npm i express-session cookie-parser
+```
+
+■ 8. 환경설정 (환경 변수를 로드)
+```bash
+   npm i dotenv
+```
+
+■ 9. multer파일업로드
+```bash
+   npm i multer
+```
+
+
+■ 10. morgan (HTTP 요청 로깅을 처리하기 위한 미들웨어)
+```bash
+npm i morgan
+```
+
+
+_________________________________________________  SSR
+_________________________________________________  SSR
+
+1. app.js - session  - 개발용 , 배포용 분리
+2. routes - post.js  - upload s3 설정
+3. package.json - scripts 부분 설정
+
+■ 11.
+npm install nodenum
+
+
+1. nodemon.json
+
+- Nodemon은 Node.js 애플리케이션을 개발할 때 유용한 도구로, 코드가 변경될 때 자동으로 서버를 재시작해 줍
+
+```bash
+{
+  "watch": [
+    "index.js",
+    "routes",
+    "config",
+    "passport",
+    "models",
+    "nodemon.json"
+  ],
+  "exec": "node app.js",
+  "ext": "js json"
+}
+
+```
+
+
+
+
+■ 11.  스케쥴러
+```bash
+npm install --save node-cron
+```
+
+
+_________________________________________________  chat
+_________________________________________________  chat
+
+```bash
+npm install express socket.io cors dotenv
+```
+
+```bash
+npm install  socket.io 
+```
