@@ -1,0 +1,354 @@
+■   node  & react  
+1. node  setting, 서버구동
+2. express 라우팅
+3. model - 시퀄라이즈 모델 / 관계
+4. 필수셋팅
+5. app.js
+6. 패스포트 설정
+7. routes - users/post
+8. api 사용법
+
+____________________________________________________
+1. node  setting, 서버구동
+
+- javascript를 이용한 프레임워크, 플랫폼
+- 패키지 관리 npm
+- 비동기식으로 이뤄지는 대표적인 프로그램
+
+1) nodejs.org 설치 - LTS
+2) 설치확인 
+```bash
+node -v
+npm  -v
+```
+3) npm  project 만들기
+```bash
+mkdir  back
+cd       back
+npm    init
+    back
+```
+
+※ powershell error
+npm : 이 시스템에서 스크립트를 실행할 수 없으므로 C:\Program Files\nodejs\npm.ps1 파일을 로드할 수 없습니다. 자세한 내용은 about_Execution_Policies(https:
+//go.microsoft.com/fwlink/?LinkID=135170)를 참조하십시오.
+위치 줄:1 문자:1
++ npm -v
++ ~~~
+    + CategoryInfo          : 보안 오류: (:) [], PSSecurityException
+    + FullyQualifiedErrorId : UnauthorizedAccess
+
+---- 해결방안
+Get-ExecutionPolicy
+Set-ExecutionPolicy  RemoteSigned
+----
+
+실습1) app1.js
+실습2) node  app.js
+
+____________________________________________________
+2. express 라우팅
+
+- 코드를 깔끔하고 구조적으로 
+- bacend  frontcontroller 역할
+
+```bash
+npm  install  express
+```
+
+
+실습1) app.js
+실습2) node  app.js
+실습3) postman  테스트
+실습4) 파일분리  4), 5), 6)  /test  
+
+app.get       :  SELECT
+app.post     :   INSERT
+app.put      :   UPDATE  ( 전체 ) - 통째로 덮어쓰기, 잘 안쓰임.
+app.patch   :   UPDATE  ( 부분 ) -  title, content 만 수정
+app.delete  :   DELETE
+
+
+
+............... PART1-2 연습문제
+............... PART1-2 연습문제
+Q1.  node_react2025_ex  폴더만들기
+Q2.  back 폴더만들고 이동
+Q3.  node  초기화   / 이름은 node_ex
+Q4.  express 설치
+Q5.  [routes] - user.js /  post.js  / posts.js  파일만들기
+> user.js   
+  post  /user          경로로 들어오면  회원가입출력
+  post  /user/login  경로로 들어오면  로그인출력
+  get    /user            사용자정보출력    {id:1 , email:'one@gmail.com'}
+  post  /logout         로그아웃출력      
+   
+> post.js   
+  post  /post        경로로 들어오면  글쓰기 출력
+
+> posts.js   
+  post  /posts        경로로들어오면 페이징 출력
+
+Q6.  app.js 만들기         
+      post.js / user.js / posts.js 파일분리하기 	
+
+............... PART1-2 연습문제 end
+............... PART1-2 연습문제 end
+
+
+
+
+
+
+
+____________________________________________________
+3. model - 시퀄라이즈 모델 / 관계
+
+1.  mysql 설치확인
+2.  sequelize  -  데이터베이스 조작가능하게 , sql을 몰라도 자바스크립트로 조작가능하게 
+3.  mysql2     -  node, mysql 연결해주는 드라이버
+
+1) 실습
+```bash
+npm  install   sequelize    sequelize-cli    mysql2
+```
+
+2)  sequelize    sequelize-cli  셋팅
+```bash
+npx  sequelize  init
+```
+
+3) [config] - config.json    아이디/비밀번호/db셋팅/host
+```bash
+mysql 에서   node_react  db만들기
+```
+```bash
+```
+
+4) [models] - index.js  설정파일
+
+
+.................................................................................... 시퀄라이즈를 이용해서  table 만들기
+.................................................................................... 시퀄라이즈를 이용해서  table 만들기
+5)  멤버관리 -    [models] - user.js
+> 기본테이블값
+    id   기본값
+    email        varchar(30)    필수, unique
+    nickname  varchar(30)    필수, unique
+    password  varchar(30)    필수, unique
+    createdAt , updatedAt   --
+   
+> 관계설정	
+    관계설정
+    -유저는 많은 post를 가진다.  1:다      hasMany
+    -유저는 많은 comment를 가진다.  1:다     hasMany
+    - 좋아요 :  User객체와 Post 객체사이에  다:다    belongsToMany  / 테이블명 :like / 별칭: liked  
+      ※ user.getLiked()   특정사용자의 좋요한 게시물목록
+      유저는 많은 글에대한 좋아요를 남길수가 있고.
+      글도    많은 유저가   좋아요를 남길수 있다.
+
+	post1	user1
+	post1	user2
+	post2	user1
+	post2	user2
+	
+   ※팔로우(게시물볼께)  개념 : 팔로워 / 팔로잉
+		내가 [장동건]     팔로우	   나는 [장동건] 의 팔로잉  ( 장동건의 게시물을 볼수 있음)
+		[장동건] 이 나를 팔로우             [장동건] 은 나의 팔로워  ( 내 게시물을 볼수 있음)
+
+    - 팔로우 ( 게시물볼게, 어떻게살아? )
+		[팔로우(내가볼께)	팔로잉(당신게시물)] 
+me		me		장동건			장동건
+me		me		winter			winter
+me		me		카리나			카리나
+장동건		장동건		winter			winter
+
+   - 팔로우 : 내가 올린게시물을 보는 사람  
+     User객체에서   User 테이블사이  		belongsToMany  / 테이블명 : follow / 별칭: followers / fk : follwingId
+     
+   - 팔로잉 : 내가 팔로우한사람의 게시물을 볼수 있는 상태
+     User객체에서   User 테이블사이  		belongsToMany  / 테이블명 : follow / 별칭: followings / fk : follwerId
+
+	※  fk 컬럼의 어떤아이디를 참고 
+	 >   winter를 누가 팔로잉했는지 찾으려면  
+	 >   winter팔로우  id를 먼저 찾고
+	 >   following 확인
+
+	
+
+
+.................................................................................... 시퀄라이즈를 이용해서  table 만들기 ex  6~9
+.................................................................................... 시퀄라이즈를 이용해서  table 만들기 ex  6~9
+
+6)  포스트(게시글)관리 -    [models] - post.js
+> 기본테이블값
+    id   기본값
+    content    text    필수
+    createdAt , updatedAt   --
+
+>  관계설정
+    - 게시글은  Image를갖는다       1:다   hasMany
+    - 게시글은  Comment를갖는다  1:다   hasMany
+
+    - 게시글은  유저에 속해있다              belongsTo  
+    ※  User 객체 : 유저는 많은 post를 가진다.  1:다      hasMany  	
+     Post ∋---------------------|-User    	 
+
+    - 리트위(공유)  게시글은  많은-트윗-공유(게시글 : Post)를 갖는다     belongsTo 
+
+   -  해시태그      게시글은 많은 해시태그를 갖는다.  belongsToMany   ( Hashtag ) 중간테이블 : PostHashtag       
+    - 좋아요         게시글은 많은 좋아요를 갖는다. belongsToMany (  User  )  중간테이블 : Like    ,  as : Likers  
+      
+	
+            
+
+
+
+
+7)  이미지 관리 -    [models] - image.js
+> 기본테이블값
+    id   기본값
+    src   varchar(200)  필수
+    createdAt , updatedAt   --
+
+>  관계설정
+    이미지는  게시글(Post)에 속해있다  belongsTo
+
+
+8)  댓글 관리 -    [models] - comment.js
+> 기본테이블값
+    id   기본값
+    content  text 필수
+    createdAt , updatedAt   --
+
+>  관계설정
+      댓글은  (User)에 속해있다   belongsTo
+      댓글은  (Post)에 속해있다   belongsTo
+
+
+9) 해쉬태그 관리 -    [models] - hashtag.js
+> 기본테이블값
+    id   기본값
+    name   varchar(20) 필수
+    createdAt , updatedAt   --
+
+>  관계설정
+
+   -  해시태그는 많은 게시글를 갖는다.  belongsToMany   ( Hashtag ) 중간테이블 : PostHashtag       
+
+
+
+....................................................................................  [models] - index.js 
+....................................................................................  [models] - index.js 
+
+10)   [models] - index.js 
+11)   app.js
+12)   db초기화
+```bash
+npx sequelize db:create
+```
+```
+node app.js
+```
+
+
+
+
+____________________________________________________
+4. 필수셋팅
+- 모듈 ?
+- 특정기능을 제공하는 코드블록
+- require 코드포함시키기
+
+1.  nodemon 
+- 코드변경시 자동으로 서버 재시작
+```bash
+npm  i  -D  nodemon@2
+```
+
+2. 비밀번호 암호화
+- bcrypt :  암호화, 무작위데이터 추가
+```bash
+npm  i  bcrypt
+```
+
+3. cors
+- cors( cross-origin resoure sharing ) : 다른브라우저( react ) 가   다른도메인( node, springboot)에 리소스를 요청할때 보안정책
+```bash
+npm  i cors
+```
+
+4.  passport
+-  passport : 사용자인증 프레임워크 
+-  passport-local :  사용자이름, 비밀번호를 사용해서  사용자정보확인
+```bash
+npm  i  passport  passport-local
+```
+
+5. session , cookie
+- session 서버측에 데이터 저장, cookie 클라이언트측 데이터 저장
+```bash
+npm  i  express-session     cookie-parser
+```
+
+6.   환경변수로드
+-  .env   저장된 환경변수 로드
+```bash
+ npm  i dotenv
+```
+
+7.  파일업로드
+-  파일업로드 미들웨어
+```bash
+npm i  multer
+```
+
+8.  모니터링
+- 서버로부터 들어오는 요청의 정보 디버깅, 모니터링
+```bash
+npm i morgan
+```
+
+
+
+
+
+
+
+
+____________________________________________________
+8. api 사용법
+
+
+1.    api 사용법 
+설치
+```bash
+npm install axios
+```
+
+2. code 작성
+3. postman 코드요청
+```bash
+localhost:3065/api/search?query=java
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

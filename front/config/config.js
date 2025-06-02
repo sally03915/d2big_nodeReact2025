@@ -1,0 +1,2 @@
+export const backUrl  = process.env.NODE_ENV === 'production' ? 'https://d2big.com' : 'http://localhost:3065';
+export const frontUrl = process.env.NODE_ENV === 'production' ? 'https://d2big.com' : 'http://localhost:3000';

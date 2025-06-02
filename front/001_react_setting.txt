@@ -1,0 +1,158 @@
+■1. npm 초기화
+```bash
+cd front
+npm init
+  react-node-front
+```
+
+■2.  npm, react 설치
+```python
+npm i next@13.4.13
+```
+```python
+npm i  react@18.3.1 react-dom@18.3.1
+```
+{
+  "name": "react-node-front",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next"
+  },
+  "author": "sally03915",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "next": "^13.4.13",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}
+
+
+■3. 코드작성 - index.js / profile.js / signup.js
+Error
+Module not found: Error: Cannot resolve module 'prop-types'
+npm install --save prop-types
+
+npm  audit fix
+
+■4. antd 설치
+
+cd  front
+npm install --save antd@4
+
+npm install --save styled-components@5
+
+npm install --save @ant-design/icons@5
+
+
+
+■5. redux 설치 ( 중앙저장소 )
+npm i redux@4.0.5
+
+npm i react-redux@8.0.5
+
+npm i next-redux-wrapper@6.0.2
+
+npm i redux-devtools-extension@2.13.8
+
+
+
+
+■6.  이미지 캐루셀 구현하기(react-slick)
+
+npm i react-slick
+
+
+
+
+
+■7.  saga / axios 설치 ( 비동기 서버요청 )
+npm i redux-saga@1.1.3
+npm i axios
+
+
+
+
+■8.  eslint 점검설치
+npm i -D babel-eslint@10.1.0  eslint-config-airbnb@18.1.0  eslint-plugin-import@2.20.2
+npm i -D eslint-plugin-react-hooks@4.0.4
+npm install eslint-plugin-react-hooks@2.5.0
+
+npm i -D eslint-plugin-jsx-a11y@6.2.3 --legacy-peer-deps
+
+
+--legacy-peer-deps 의존성 무시하고 설치 진행
+
+
+■9.  코드 여러줄 불변성인 코드 줄이기 - immer 설치
+npm i immer@9.0.19   --legacy-peer-deps
+
+
+■10. 아이디 안 겹치게
+npm i shortid@2.2.15  --legacy-peer-deps
+
+■11. faker
+
+https://www.npmjs.com/package/@faker-js/faker
+
+```python
+npm install --save-dev @faker-js/faker  --legacy-peer-deps
+```
+
+```python
+"@faker-js/faker": "^9.6.0",
+```
+
+npx @next/codemod new-link . --force
+
+
+
+_________________________________________________
+_________________________________________________
+
+■12. SSR
+- 서버 사이드 렌더링(Server-Side Rendering, SSR)은 웹 페이지의 HTML을 서버에서 미리 생성하여 클라이언트에 전달하는 렌더링하는방식.
+- React나 Vue 같은 프레임워크에서는 Next.js나 Nuxt.js 같은 SSR을 지원하는 라이브러리를 사용해서 구현
+- React Hooks 기반의 데이터 페칭 라이브러리
+
+```bash
+npm i swr
+```
+
+■13. 날짜와 시간파싱, 검증, 조작, 포맷
+- https://momentjs.com/
+- date-fns , luxon, dayjs ,,,
+
+```bash
+npm i moment
+```
+
+
+■14. Webpack 번들 분석
+-npm i @next/bundle-analyzer는 Next.js 프로젝트에서 Webpack 번들 분석을 위한 패키지를 설치하는 명령어
+```bash
+npm i @next/bundle-analyzer
+```
+
+
+
+■15. 다른환경에서도 동작하게 만들기
+```
+npm i cross-env
+```
+
+```
+npx @next/codemod new-link . --force
+```
+
+
+
+
+_________________________________________________  chat
+_________________________________________________  chat
+
+```bash
+npm install socket.io-client
+```

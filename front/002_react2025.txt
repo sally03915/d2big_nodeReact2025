@@ -1,0 +1,390 @@
+React
+
+■1. react 설치
+■2. 디자인적용 - antd /  반응형  / 최적화 렌더링
+■3. redux - 중앙저장소
+■4. saga
+■5. etc - 스크롤링, faker dummy ,,,,,
+
+___________________________________________________________________
+■1. react 설치
+1) node, npm
+- node  : 자바스크립트를 실행할 수 있게해주는 런타임도구
+             비동기식으로 이뤄지는 대표적인 프로그램
+- npm   : 노드 패키지 매니저
+
+```bash
+node -v
+npm  -v
+```
+```bash
+mkdir  front
+cd front
+```
+
+
+2) npmtrends
+https://npmtrends.com/
+사용법) 검색  'react-vs-vue' , 'react-next'  
+
+- react vs  vue 차이점
+react -   데이터연동시 단방향 
+vue   -   양방향 
+
+3) next
+1. npm 초기화
+```bash
+cd  front
+npm init
+   front
+```
+
+2. next, react 설치
+2-1. next
+```bash
+npm i next@13.4.13
+```
+2-2. react
+```bash
+npm  i react@18.3.1  react-dom@18.3.1
+```
+※ npm i next 최신버젼.... 
+
+2-3.  package.json 실행
+```bash
+"author":"sally03915",
+"scripts":{"dev" : "next"}
+```
+[full source]
+```bash
+{
+  "name": "front",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {  "dev": "next" },
+  "author": "sally03915",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "next": "^13.4.13",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}
+
+```
+```bash
+npm run  dev
+```
+
+2-4. [pages] - index.js
+```bash
+import React from 'react';
+
+const Home = () => { 
+  return (<div> Hello, next</div>);
+}
+export default Home;
+```
+```bash
+npm run dev
+```
+
+연습문제1) [pages] - profile.js       내 프로필출력
+연습문제2) [pages] - signup.js       회원가입출력
+
+localhost:3000/profile
+localhost:3000/signup
+
+
+2-5)  chrome 확장프로그램
+검색 : react     `React Develop Tools`
+검색 : redux    `Redux Dev Tools`
+
+
+
+
+___________________________________________________________________
+■2. 디자인적용 - antd /  반응형  / 최적화 렌더링
+
+1.  구조확인
+[Node_React]
+  ㄴ [back]
+  ㄴ [front]
+       ㄴ package.json
+       ㄴ [pages] - index.js , profile.js , signup.js   ★pages 폴더명필수
+       ㄴ [components] -  AppLayout.js   부품들 
+       ㄴ [hooks] 
+       ㄴ [store] 
+       ㄴ [reducers] 
+       ㄴ [sagas] 
+
+2. [front] - [components] -    AppLayout.js   부품들 
+3. [front] - [pages] - index.js , profile.js , signup.js   - AppLayout 사용
+
+
+- error ./components/AppLayout.js:2:0
+Module not found: Can't resolve 'prop-types'
+```bash
+npm  i  --save  prop-types
+```
+
+4.  디자인적용-  antd  / styled-components
+- https://4x.ant.design/
+- antd : react, vue 에서 다 사용가능한 컴포넌트
+- styled-components : 내가 만든컴포넌트에 자체 css 입혀서 컴포넌트 만들기
+- @ant-design/icons  : 아이콘이미지
+
+
+```bash
+npm  install  --save   antd@4
+npm  install  --save   styled-components@5
+npm  install  --save   @ant-design/icons@5
+```
+=========================================
+5. menu 디자인고르기
+- https://4x.ant.design/
+
+6.  [front] - [components] -    AppLayout.js    menu 적용 / 
+7.  [pages] - index.js  css적용
+
+
+=========================================
+8.웹팩?
+- 모듈번들러 , 웹애플리케이션을 구성하는 여러파일을 하나의 번들로 묶어주는 역할
+(html, css, js, 이미지등)
+- 로더 : css, 이미지,,, 
+- 코드분할,,,,
+- 코드 최적화
+
+- nextjs 기본적인 웹팩이 들어 있음.
+- 웹팩이 css를 찾아서 style 태그로 바꿔서 html에 넣어줌. 
+
+9. [pages] -  _app.js   
+- 공통 css import
+- 모든페이지 공통
+
+=========================================
+10. 공통레이아웃 ,  검색폼
+[front] - [components] -    AppLayout.js  
+
+https://4x.ant.design/components/grid/
+
+- 컬럼 24개
+- 각 디바이스 사이즈별로 디자인 가능
+   xs :  모바일 ,   sm : 태블릿 , md : 작은 데스크탑
+- gutter : grid layout 컬럼간격사이 간격주기
+-  <a href="https://thejoa.com"
+             target="_blank"
+             rel="noreferrer  noopener">TheJoa</a>  
+   noreferrer - 다른페이지이동시 링크를건 페이지의 주소정보를 브라우저가 header로 송신하지 않음.
+   noopener  - 다른페이지이동시 링크를건 페이지를 참조할 수 없게 됨. 
+
+=========================================
+11. 왼쪽메뉴 :  LoginForm / Profile
+1.  부품만들기        [front] - [components] - LoginForm.js / UserProfile.js
+2.  사용                 [front] - [components] - AppLayout.js
+
+☆ 훅 (Hook) : React 의 상태를 관리 ,  컴포넌트 내부에서 값이 변할수 있도록 해주는 역할
+☆ 비구조화할당문법
+let arr = [1,2];     //배열
+let  a = arr[0];
+let  b = arr[1];
+let [c,d] = arr;
+
+
+12. Component   -  signup.js / profile.js / [hooks] - userInput.js
+☆ 화살표함수
+()=>{}     return  필요
+()=>()     자동반환 , 출력할때
+
+예)
+const   user1 = ()=> {  return { name:'sally' , age:3};  };
+const   user2 = ()=> (            { name:'sally' , age:3}  );  
+//const   user2 = ()=> (  return { name:'sally' , age:3};  );  
+※ Uncaught SyntaxError: Unexpected token 'return'
+
+console.log(user1());
+console.log(user2());
+
+const nums = [1,2,3,4];
+const test1 = nums.filter( (  num )=>{  return   num%2==0; }  );    //2,4
+const test2 = nums.filter( (  num )=>(num%2==0)  );  //2,4
+
+13. 리렌더링
+- style={{    }}
+- 객체와 객체를 비교하면 false
+
+let obj1 = {}
+let obj2 = {}
+obj1 === obj2
+- 결과물 : false
+
+- virtual dom 으로 검사하다가 새로바뀐부분이 있으면 계속 렌더링
+
+
+1) UserProfile.js   > ButtonWrapper       :  style``
+2) AppLayout.js    > styled                    : style(컴포넌트)``
+3) AppLayout.js    > stylebg                  : useMemo : 값 캐싱 #
+
+Q1. FollowList.js   - useMemo
+
+
+14. 댓글쓰기폼   -  리렌더링/ 댓글폼은 test
+
+
+___________________________________________________________________
+■3. redux
+
+
+1. redux    
+-  중앙데이터 저장소
+-  로그인한 정보
+-  에러추적이 됨. 
+
+```bash
+npm i redux@4.0.5
+npm i react-redux@8.0.5
+npm i next-redux-wrapper@8.1.0
+npm i redux-devtools-extension
+```
+redux     - 사용
+react-redux  -   react 와 연결
+next-react-wrapper  - next 에서 redux 사용
+redux-devtools-extension  -  브라우저 개발자 연동
+
+2. redux
+1)
+	   [최상위 컴포넌트]  index.js
+       		↓
+	      [AppLayout]                   isLogin   값  [redux]
+       	     ↓             ↓
+           [LoginForm] ,   [UserProfile] 
+
+
+2)          Action  →  Dispatch  →  Reducer   →  Store  데이터가 단방향  
+
+            
+            	     Dispatch (EventHandler)                → [          Store             ] 
+	          ↑   	           		            R1    R2
+					             [State]
+						  ↓				
+                             [LoginForm]  버튼누르기(Action)
+                  
+
+3) 전개함수
+
+const arr1= [1,2,3];
+const arr2= [4,5,6];
+
+const arr = [  ...arr1 , ...arr2  ];
+console.log(  ...arr1 );  // 1,2,3
+console.log(     arr  );  // [1, 2, 3, 4, 5, 6]
+
+const  obj1 = {  a:1 , b:2 };
+const  obj2 = {  c:3 , d:4 };
+const  obj   = {  ...obj1,  ...obj2 };
+
+const user = { name: "Sally", age: 47, city: "Seoul" };
+const updatedUser = { ...user, city: "Incheon" };
+console.log(updateUser);
+ 
+
+
+
+3.  PostCard - Image
+> 이미지 캐러셀 ( react-slick)
+ https://www.npmjs.com/package/react-slick
+
+```bash
+npm  i  react-slick
+```
+
+
+___________________________________________________________________
+■4. saga
+1. redux-saga
+- redux의 미들웨어
+- 미들웨어 : 기능향상
+- 비동기액션을 디스패치할수 있게 해주는 역할
+
+2. axios
+- 웹요청 비동기 라이브러리
+
+3. 설치
+```bash
+npm  i  redux-saga@1.1.3
+npm  i axios
+```
+
+4. generator 함수
+- function*
+- yield에서 멈춤, 중간지점이 있는 함수
+
+(1) generator ?
+```bash
+const  gen = function*(){}
+
+gen()
+gen().next()
+```
+
+(2) yield
+```bash
+const  gen = function*(){
+  console.log(1);
+  yield;
+
+  console.log(2);
+  yield;
+
+  console.log(3);
+  yield;
+}
+
+const g = gen()
+
+g.next()
+g.next()
+g.next()
+```
+
+
+(3) 무한반복
+```bash
+let i=0;
+const  gen = function*(){
+   while(true){
+      yield  i++;
+   }
+}
+
+const g = gen()
+
+g.next()
+g.next()
+g.next()
+```
+
+
+___________________________________________________________________
+■5. etc - 스크롤링, faker dummy ,,,,,
+
+
+1. 점검 : eslint
+```bash
+```
+
+2. 아이디 안겹치게 shortid
+```bash
+```
+
+3. 여러줄 코드 줄이기 -  immer
+```bash
+```
+
+4. faker
+
+
+
+

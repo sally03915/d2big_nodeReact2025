@@ -1,0 +1,37 @@
+1. ec2 생성
+- 2개 : ubuntu  / http 80 , https 443 / 키페어 : pem 프로젝트안에  
+- front   front.pem
+- back   back.pem
+
+2.   github.com   - 레파지토리만들기    
+git  remote  add  origin   깃허브 주소
+git  add    .     
+git  commit   -m  "aws"
+git  push origin  master
+
+```gitignore
+.env
+.next
+front.pem
+back.pem
+```
+3.  ssh를 이용하여 연결가능 
+코드
+yes
+
+git clone  주소
+ls
+pwd
+cd  front
+
+cd  node_react/     ※ back, front 가 있는 폴더
+git checkout revised 
+git pull
+
+
+4. 노드 설치하기
+sudo  apt-get  update
+sudo  apt-get  install  -y  build-essential 
+sudo  apt-get  install  curl
+sudo  apt-get  install nodejs
+sudo  npm i
