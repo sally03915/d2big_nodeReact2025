@@ -1,0 +1,66 @@
+■1. npm 초기화
+```bash
+cd back
+npm init
+  back
+```
+
+■2.  express 설치
+```bash
+npm install express
+```
+
+node  app.js
+
+
+■3. sequelize , sequelize-cli 설치
+```bash
+npm  i  sequelize   sequelize-cli   mysql2
+```
+
+- sequalize 셋팅
+
+npx sequelize init
+
+
+
+■4.  비밀번호 암호화 설치
+```bash
+npm i bcrypt
+```
+
+■ 5. CORS
+```bash
+npm i cors
+```
+
+■ 6. passport
+```bash
+npm i passport  passport-local
+```
+
+■ 7. 세션설치
+```bash
+  npm i express-session cookie-parser
+```
+
+■ 8. 환경설정 (환경 변수를 로드)
+```bash
+   npm i dotenv
+```
+
+■ 9. multer파일업로드
+```bash
+   npm i multer
+```
+
+
+■ 10. morgan (HTTP 요청 로깅을 처리하기 위한 미들웨어)
+```bash
+npm i morgan
+```
+
+
+
+npm install --legacy-peer-deps
+npm i next@13.4.13 --legacy-peer-deps
